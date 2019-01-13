@@ -35,7 +35,7 @@ class App extends Component {
       if(event.target.value.length === 0){
         this.setState({resultsArr: []});
       }else {
-        this.getResults(event.target.value);
+        this.getResults(event.target.value.toLowerCase());
       }
       
     }
@@ -47,7 +47,8 @@ class App extends Component {
     let searchterms = search.split(/[ ,()]+/);
     
     data.map((elem)=>{
-      let keywords = elem.keywords.split(/[ ,()]+/);
+      let lowered = elem.keywords.toLowerCase();
+      let keywords = lowered.split(/[ ,()]+/);
       searchterms.map((val)=>{
         if(keywords.includes(val)){
           resultsArr.push(elem);
