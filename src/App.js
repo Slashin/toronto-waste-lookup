@@ -21,7 +21,7 @@ class App extends Component {
   // }
 
   handleClick = (evt) => {
-    let value = evt.target.parentNode.parentNode.parentNode.children[0].children[0].value;
+    let value = evt.target.parentNode.parentNode.children[0].children[0].value;
     if(value.length === 0){
       this.setState({resultsArr: []});
     }else {
@@ -73,8 +73,8 @@ class App extends Component {
           <div id="searchBox" >
             <input type="text" id="inputField" onKeyPress={(event)=>{this.handleKeyPress(event)}} placeholder="Enter Keyword"/>
           </div>        
-          <div id="searchButtonBox">
-            <button onClick={(evt)=>this.handleClick(evt)}><i className="fas fa-search "></i></button>
+          <div id="searchButtonBox" onClick={(evt)=>this.handleClick(evt)}>
+            <button ><i className="fas fa-search "></i></button>
           </div>
         </div>
 
