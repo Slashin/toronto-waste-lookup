@@ -15,7 +15,7 @@
 
 #searchBox{
   display: inline-block;
-  width: 97.5%;
+  width: 97%;
 }
 
 #searchBox input{
@@ -25,17 +25,22 @@
 
 #searchButtonBox{
   display: inline-block;
-  width: 2.5%;
+  width: 3%;
   text-align: right;
 }
 
 #searchButtonBox button {
   background-color: #23965d;
   color: white;
-  padding: 5px;
-  padding-right: 7px;
-  padding-left: 7px;
+  padding: 8px;
+  transform: rotate(90deg);
+  border: none;
   
+}
+
+#searchButtonBox button:hover {
+  background-color: #1b6e45;
+  cursor: pointer;
 }
 
 .fa-search{

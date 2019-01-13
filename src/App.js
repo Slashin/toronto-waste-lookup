@@ -22,24 +22,39 @@ class App extends Component {
 
   handleClick = (evt) => {
     let value = evt.target.parentNode.parentNode.parentNode.children[0].children[0].value;
-    this.getResults(value);
+    if(value.length === 0){
+      this.setState({resultsArr: []});
+    }else {
+      this.getResults(value);
+    }
   }
 
   handleKeyPress = (event) => {
-  
+
     if(event.key === 'Enter'){
-      this.getResults(event.target.value);
+      if(event.target.value.length === 0){
+        this.setState({resultsArr: []});
+      }else {
+        this.getResults(event.target.value);
+      }
+      
     }
     
   }
 
   getResults = (search) => {
     let resultsArr = [];
+    let searchterms = search.split(/[ ,()]+/);
+    
     data.map((elem)=>{
       let keywords = elem.keywords.split(/[ ,()]+/);
-      if(keywords.includes(search)){
-        resultsArr.push(elem);
-      }
+      searchterms.map((val)=>{
+        if(keywords.includes(val)){
+          resultsArr.push(elem);
+        }
+        console.log("hi");
+      })
+      
     })
     this.setState({resultsArr: resultsArr});
     console.log(resultsArr);
@@ -55,7 +70,7 @@ class App extends Component {
 
         <div id="section2">
           <div id="searchBox" >
-            <input type="text" onKeyPress={(event)=>{this.handleKeyPress(event)}} placeholder="Enter Keyword"/>
+            <input type="text" id="inputField" onKeyPress={(event)=>{this.handleKeyPress(event)}} placeholder="Enter Keyword"/>
           </div>        
           <div id="searchButtonBox">
             <button onClick={(evt)=>this.handleClick(evt)}><i className="fas fa-search "></i></button>
@@ -65,7 +80,9 @@ class App extends Component {
         </div>
 
         <div id="section3">
-          <Results data={this.state.resultsArr}/>
+    
+              <Results data={this.state.resultsArr}/>
+          
         </div>
 
         
